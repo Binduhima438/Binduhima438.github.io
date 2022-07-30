@@ -48,6 +48,7 @@ function servo(pos, id) {
 $.get("/?value" + id + "=" + pos + "&"); {Connection: close};}
 
 function servoalign(buttonid,alignment) {
+    var lrvalue = "reset";
     document.getElementById(buttonid).style.backgroundColor  = "#eaea21";
     document.getElementById("button4").style.backgroundColor = "#FFFFFF";
     document.getElementById("button5").style.backgroundColor = "#FFFFFF";
@@ -67,6 +68,7 @@ function servoalign(buttonid,alignment) {
             document.getElementById("button2").style.backgroundColor = "#FFFFFF";
             document.getElementById("mat").src = "./images/reset.png";
         }
+        servomode(buttonid, "reset"); lrvalue = alignment;
     
 }
 
@@ -84,6 +86,7 @@ function servomode(buttonid,alignment) {
             document.getElementById("button4").style.backgroundColor = "#FFFFFF";
             document.getElementById("button5").style.backgroundColor = "#FFFFFF";
         }
+        $.get("/" + alignment + "=" + lrvalue + "&"); { Connection: close };
     
 }
 
