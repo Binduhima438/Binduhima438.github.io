@@ -1,0 +1,94 @@
+
+<!DOCTYPE html><html>
+    <head><meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
+               
+    <style>body { text-align: center; font-family: "Trebuchet MS", Arial; margin-left:auto; margin-right:auto; }
+    .slider { -webkit-appearance: none; width: 300px; height: 25px; border-radius: 10px; background: #171717; outline: none;  opacity: 0.7;-webkit-transition: .2s;  transition: opacity .2s;}
+    .slider::-webkit-slider-thumb {-webkit-appearance: none; appearance: none; width: 35px; height: 35px; border-radius: 50%; background: #ff3410; cursor: pointer; }
+    .leftButton {	box-shadow: 0px 18px 23px -1px #9fb4f2;	background-color:#ffffff;	border-radius:25px;	border:4px solid #4e6096;	display:inline-block;	cursor:pointer;	color:#050405;	font-family:Courier New;	font-size:20px;	font-weight:bold;	padding:15px 25px;	text-decoration:none;}
+    .leftButton:focus {position:relative;	top:1px;  background-color:#eaea21;}
+    .rightButton {	box-shadow: 0px 18px 23px -1px #9fb4f2;	background-color:#ffffff;	border-radius:25px;	border:4px solid #4e6096;	display:inline-block;	cursor:pointer;	color:#050405;	font-family:Courier New;	font-size:20px;	font-weight:bold;	padding:15px 25px;	text-decoration:none;}
+    .rightButton:focus {position:relative;	top:1px; background-color:#eaea21;}
+    .resetButton {	box-shadow: 0px 18px 23px -1px #9fb4f2;	background-color:#ffffff;	border-radius:25px;	border:4px solid #4e6096;	display:inline-block;	cursor:pointer;	color:#050405;	font-family:Courier New;	font-size:20px;	font-weight:bold;	padding:15px 25px;	text-decoration:none;}
+    .resetButton:focus {position:relative;	top:1px; background-color:#eaea21;}
+    .easybutton {box-shadow: 0px 8px 0px 0px #3dc21b;background-color:#ffffff;border-radius:42px;display:inline-block;cursor:pointer;color:#080708;font-family:Arial;font-size:17px;padding:32px 20px;text-decoration:none;text-shadow:0px 1px 0px #2f6627;}
+    .easybutton:active {position:relative;top:1px;}
+    .mediumbutton {box-shadow: 0px 8px 0px 0px #ed8123;background-color:#ffffff;border-radius:42px;display:inline-block;cursor:pointer;color:#080708;font-family:Arial;font-size:17px;font-weight:bold;padding:32px 10px;text-decoration:none;}
+    .mediumbutton:active {position:relative;top:1px;}
+    .redbutton {box-shadow: 0px 8px 0px 0px #b30d0d;background-color:#ffffff;border-radius:42px;display:inline-block;cursor:pointer;color:#0b0b0b;font-family:Arial;font-size:17px;font-weight:bold;padding:32px 22px;text-decoration:none;}
+    .redbutton:active {position:relative;top:1px;}
+
+</style>
+               
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<img src="https://static.wixstatic.com/media/697953_4011c283791c4dccb8488b2f8011e518~mv2.png/v1/crop/x_244,y_0,w_3307,h_2000/fill/w_248,h_150,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Puttato-Logo.png" alt="W3Schools.com" style="display: block;margin-left: auto;margin-right: auto;">
+<body>
+   
+<img id="mat" src="./images/reset.png" alt="W3Schools.com" style="display: block;margin-left: auto;margin-right: auto;height: 10%;width: 10%;" >
+<br>
+<button class="leftButton" onclick="servoalign(this.id,'left')" id="button1">Left</button>   
+<span>&ensp;&ensp;&ensp;</span>
+<button class="rightButton" onclick="servoalign(this.id,'right')" id="button2">Right</button> 
+
+<br><br><br><br>
+<button class="easybutton" onclick="servomode(this.id,'easy')" id="button4">Easy</button>   
+<span>&ensp;&ensp;&ensp;</span>
+<button class="mediumbutton" onclick="servomode(this.id,'medium')" id="button5">Medium</button>  
+<span>&ensp;&ensp;&ensp;</span>
+<button class="redbutton" onclick="servomode(this.id,'hard')" id="button6">Hard</button> 
+<span>&ensp;&ensp;&ensp;</span>
+<br><br><br><br>
+<button class="resetButton" onclick="servoalign(this.id,'reset')" id="button3">Reset</button> 
+<script>           
+           
+$.ajaxSetup({timeout:1000});
+function servo(pos, id) { 
+$.get("/?value" + id + "=" + pos + "&"); {Connection: close};}
+
+function servoalign(buttonid,alignment) {
+    document.getElementById(buttonid).style.backgroundColor  = "#eaea21";
+    document.getElementById("button4").style.backgroundColor = "#FFFFFF";
+    document.getElementById("button5").style.backgroundColor = "#FFFFFF";
+    document.getElementById("button6").style.backgroundColor = "#FFFFFF";
+    if(buttonid=='button1'){
+            document.getElementById("button2").style.backgroundColor = "#FFFFFF";
+            document.getElementById("button3").style.backgroundColor = "#FFFFFF";
+            document.getElementById("mat").src = "./images/left.png";
+        }
+        else if(buttonid=='button2'){
+            document.getElementById("button1").style.backgroundColor = "#FFFFFF";
+            document.getElementById("button3").style.backgroundColor = "#FFFFFF";
+            document.getElementById("mat").src = "./images/right.png";
+        }
+        else{
+            document.getElementById("button1").style.backgroundColor = "#FFFFFF";
+            document.getElementById("button2").style.backgroundColor = "#FFFFFF";
+            document.getElementById("mat").src = "./images/reset.png";
+        }
+    
+}
+
+function servomode(buttonid,alignment) {
+    document.getElementById(buttonid).style.backgroundColor  = "#eaea21";
+    if(buttonid=='button4'){
+            document.getElementById("button5").style.backgroundColor = "#FFFFFF";
+            document.getElementById("button6").style.backgroundColor = "#FFFFFF";
+        }
+        else if(buttonid=='button5'){
+            document.getElementById("button6").style.backgroundColor = "#FFFFFF";
+            document.getElementById("button4").style.backgroundColor = "#FFFFFF";
+        }
+        else{
+            document.getElementById("button4").style.backgroundColor = "#FFFFFF";
+            document.getElementById("button5").style.backgroundColor = "#FFFFFF";
+        }
+    
+}
+
+
+
+</script>
+
+</body></html>    
